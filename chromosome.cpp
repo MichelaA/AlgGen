@@ -1721,9 +1721,9 @@ double* chromosome::ECM(frbs& fis, double** inOutCamp, int numCamp,bool test)
 
 		uscite = ECM(fis, inOutCamp, numCamp,false);
 
-		/*if (TuningPW)
-			interp = evaluateDistPWC(objTot[1], fis);//questa va scommentata per il tuning normale
-		else*/
+		if (TuningPW)
+			objTot[1] = 1-evaluateDistPW(); //objTot[1], fis);//questa va scommentata per il tuning normale
+		else
 			objTot[1]=0;
 
 		objTot[0]=comp; //complessita
@@ -1909,8 +1909,8 @@ double* chromosome::ECM(frbs& fis, double** inOutCamp, int numCamp,bool test)
 			somma += appo;
 		}
 
-	//	return 2 * somma / ((double) ingressi * (MAXPARTI - 2));
-		return 0;
+		return 2 * somma / ((double) ingressi * (numParts[0] - 2));
+
 	}
 
 

@@ -1394,9 +1394,9 @@ void readFiles(const char* fileInput, const char* filePar,int fold)
       fclose (fp);
 
       /* Read training set */
-      sprintf(numero,"%i",fold+1);
-      strcat(file_tra,numero);
-      strcat(file_tra,".tra");
+   //   sprintf(numero,"%i",fold+1);
+    //  strcat(file_tra,numero);
+    //  strcat(file_tra,".tra");
       if ((fp = fopen(file_tra, "r")) ==NULL){
          printf("Error opening file\n");
          exit(1);
@@ -1405,8 +1405,8 @@ void readFiles(const char* fileInput, const char* filePar,int fold)
 
       fclose(fp);
       /* Read test set*/
-      strcat(file_test,numero);
-      strcat(file_test,".tst");
+    //  strcat(file_test,numero);
+     // strcat(file_test,".tst");
       if ((fp = fopen(file_test, "r")) ==NULL){
          printf("Error opening file\n");
          exit(1);

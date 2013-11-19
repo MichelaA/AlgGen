@@ -31,10 +31,6 @@ void paes::evaluatePop(double** inOutRed, int dimDt)
 
 }
 
-
-
-
-
 paes::paes(int depth,int nsolution) //depth=4 nsolotion=2 fixed in the main program to this typical  values to implement the 2+2 Paes
 {
 	c=new chromosome[nsolution];

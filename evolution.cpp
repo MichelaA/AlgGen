@@ -260,9 +260,9 @@ void evolution::saveresults(chromosome* chrom, int popsize)
 		int n=chrom[i].getRealNumRule();
 
 		if (CLASSIFICATION)
-			fpObj<<comp<<' '<<1-chrom[i].getObjTot(1)<<' '<<n<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<1-chrom[i].getObjTot(5)<<' '<<1-Errtst[0]<<' ';
+			fpObj<<comp<<' '<<chrom[i].getObjTot(1)<<' '<<n<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<1-chrom[i].getObjTot(5)<<' '<<1-Errtst[0]<<' ';
 		else
-			fpObj<<comp<<' '<<1-chrom[i].getObjTot(1)<<' '<<n<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<chrom[i].getObjTot(5)<<' '<<Errtst[0]<<' ';
+			fpObj<<comp<<' '<<chrom[i].getObjTot(1)<<' '<<n<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<chrom[i].getObjTot(5)<<' '<<Errtst[0]<<' ';
 
 
 		if (ProbVarPartion!=0)
@@ -313,28 +313,16 @@ Print the solution with best accuracy
 *******************************************************************/
 void evolution::stampaBest(chromosome& arc0,int it,int arclength)
 {
-	//float* pieces=new float[numpieces];
-	int numR; //numP=arc0.getNumPar();
-
-	//float* tuple=new float[numP];
-	double* d=0;
-
-	double* Errtst;
-//	int dimensione;
-//	unsigned** matAppo;
-//	int realNumRule;
-//	unsigned** rule=arc0.getMatR();
+	double* Errtst=arc0.ECM(fis,inOutTs,numPatterTs,true);
+	int numR=arc0.getRealNumRule();
+	int numFeat=arc0.getNumFeat();
+	double comp=arc0.getComp();
 
 	cout<<it<<' ';
-
-	Errtst=arc0.ECM(fis,inOutTs,numPatterTs,true);
-	numR=arc0.getRealNumRule();
-
-	double comp=arc0.getComp();
 	if (CLASSIFICATION)
-		cout<<comp<<' '<<1-arc0.getObjTot(1)<<' '<<arc0.getObjTot(3)<<' '<<numR<<' '<<1-arc0.getObjTot(5)<<' '<<1-Errtst[0]<<' '<<arc0.getObjTot(6)<<' '<<arc0.getObjTot(7)<<' ';
+		cout<<comp<<' '<<arc0.getObjTot(1)<<' '<<numR<<' '<<arc0.getObjTot(3)<<' '<<numFeat<<' '<<1-arc0.getObjTot(5)<<' '<<1-Errtst[0]<<' ';
 	else
-		cout<<comp<<' '<<1-arc0.getObjTot(1)<<' '<<arc0.getObjTot(3)<<' '<<numR<<' '<<arc0.getObjTot(5)<<' '<<Errtst[0]<<' ';
+		cout<<comp<<' '<<arc0.getObjTot(1)<<' '<<numR<<' '<<arc0.getObjTot(3)<<' '<<numFeat<<' '<<arc0.getObjTot(5)<<' '<<Errtst[0]<<' ';
 	cout<<"dim_arc:"<<arclength<<endl;
 	delete[] Errtst;
 }
@@ -399,9 +387,9 @@ void evolution::savestep(chromosome* chrom, int popsize,int numEval,char* nome)
 		int numFeat=chrom[i].getNumFeat();
 		appopart=chrom[i].getRealPart();
 		if (CLASSIFICATION)
-			fpObj<<comp<<' '<<1-chrom[i].getObjTot(1)<<' '<<numR<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<1-chrom[i].getObjTot(5)<<' '<<1-Errtst[0]<<' ';
+			fpObj<<comp<<' '<<chrom[i].getObjTot(1)<<' '<<numR<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<1-chrom[i].getObjTot(5)<<' '<<1-Errtst[0]<<' ';
 		else
-			fpObj<<comp<<' '<<1-chrom[i].getObjTot(1)<<' '<<numR<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<chrom[i].getObjTot(5)<<' '<<Errtst[0]<<' ';
+			fpObj<<comp<<' '<<chrom[i].getObjTot(1)<<' '<<numR<<' '<<chrom[i].getObjTot(3)<<' '<<numFeat<<' '<<chrom[i].getObjTot(5)<<' '<<Errtst[0]<<' ';
 		if (ProbVarPartion!=0)
 			for (int j=0;j<numVar;j++)
 				fpObj<<appopart[j]<<' ';

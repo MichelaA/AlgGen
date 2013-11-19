@@ -128,12 +128,12 @@ int main ( int argc, char *argv[] )
 	  double dif;
 	  time (&start);
 
-	  vector<int>* matFeat=0;
-	  int numfold=5;
+	 // vector<int>* matFeat=0;
+	  int numfold=10;
 
-	  double** miV, **maV;
+	//  double** miV, **maV;
 
-	  if (!CLASSIFICATION)
+	/*  if (!CLASSIFICATION)
 	  {	  //inizializeVar ( "GLAT11.ENT","pippo", 0 );
 		  // inizializeVar(argv[1],argv[2],0);
 		  vector<int>*  gran;
@@ -150,12 +150,11 @@ int main ( int argc, char *argv[] )
 				  cout<<gran[i][j]<<' ';
 		  	  cout<<endl;
 	  }*/
+/*		  for (int i=0;i<numfold;i++)
+		  	  {	 miV[i]=maV[i]=0;
+		  	  //inizializeVar ( "GLAT11.ENT","pippo", i); //, gran[i],miV[i],maV[i]);//
 
-	  for (int i=0;i<numfold;i++)
-		  {	 miV[i]=maV[i]=0;
-			 //inizializeVar ( "GLAT11.ENT","pippo", i); //, gran[i],miV[i],maV[i]);//
-
-			 inizializeVar(argv[1],argv[2],i); //,gran[i],0,0);
+		  	  	  inizializeVar(argv[1],argv[2],i); //,gran[i],0,0);
 		  	  /*if (matFeat==0)
 		  	  {		matFeat=new vector<int>[numfold];
 	  				for (int j=0;j<numfold;j++)
@@ -163,34 +162,39 @@ int main ( int argc, char *argv[] )
 	  				leggi(matFeat);
 		  	  }
 		  	  calcolaWMrandom(matFeat[i]);*/
-	  	   	  seleziona();
-		  }
-		   exit(1);
-	  }
 
-	  if (CLASSIFICATION)
-	  {	soga sg;
-	  	sg.evolution();
-	  	sg.setc45Best();
-	  }
+/*		  seleziona();
+	  	  }
+		   	   exit(1);
+	  	  }
 
-
-	/*if (CLASSIFICATION)
-	 {	int numAtt=0;fis(numVar)
+	  	  if (CLASSIFICATION)
+	  	  {	soga sg;
+	  	  	sg.evolution();
+	  	  	sg.setc45Best();
+	  	  }
+*/
+//bool fatto=false;
+//for (int i=0;i<numfold;i++)
+	//inizializeVar( "GLAT11.ENT","pippo", i);
+	int i=0;
+	inizializeVar(argv[1],argv[2],i);
+	if (CLASSIFICATION)
+	{
+		int numAtt=0;
+	 	frbs fis(numVar);
 	 	int* indici=0;
 		matC45=calcolaMatC45(dimmatC45,numAtt,indici);
 		cambiaVariabili(numAtt,indici,numParts);
 		delete[] indici;
-	 }*/
-	for (int i=0;i<5;i++)
-{	//inizializeVar(argv[1],argv[2],i);
-	inizializeVar ( "GLAT11.ENT","pippo",i);
-
+	 }
+/*	for (int i=0;i<5;i++)
+	{	//inizializeVar(argv[1],argv[2],i);
+		inizializeVar ( "GLAT11.ENT","pippo",i);
+*/
 	paes popol(4,2);
 
-
-
-	 if (Perc==100)
+	if (Perc==100)
 		 popol.evolvPop(inOutTr,0,numPatterTr,1);
 	 else
 	 {	 char nomefile[100]="EvolDataset.txt";
@@ -213,18 +217,20 @@ int main ( int argc, char *argv[] )
 	 }
 	 fptempo<<dif<<endl;
 
-	 delete[] minVal;
-	 delete[] maxVal;
+	/* delete[] minVal;
+	 delete[] maxVal;*/
 
-	 for ( int i=0;i<numPatterTr;i++ )
-		 delete[] inOutTr[i];
+	 for ( int j=0;j<numPatterTr;j++ )
+	 	 delete[] inOutTr[j];
+
+	 for ( int j=0;j<numPatterTs;j++ )
+		 delete[] inOutTs[j];
+
 	 delete[] inOutTr;
-
-		delete[] inOutTs[i];
 	 delete[] inOutTs;
 }
 	 //return EXIT_SUCCESS;
 
-}
+
 
 
